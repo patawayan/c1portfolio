@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "C1",
+    "colors": {
+      "primary": "#FF8C01",
+      "dark": "#000000",
+      "light": "#EEEEEE"
+    }
+  },
+  "routes": [
+    {
+      "title": "Home",
+      "subtext": "This is some subtext. Making this subtext extra long for the long subtext vibes.",
+      "type": "art",
+      "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b7194b23-f36b-4ed0-a679-d4f262ec5aa0/dfnn9k7-11e1504c-4500-4f7a-919f-aca65e752120.png/v1/fill/w_733,h_1090,q_70,strp/sample1_by_pferty_dfnn9k7-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTYwMyIsInBhdGgiOiJcL2ZcL2I3MTk0YjIzLWYzNmItNGVkMC1hNjc5LWQ0ZjI2MmVjNWFhMFwvZGZubjlrNy0xMWUxNTA0Yy00NTAwLTRmN2EtOTE5Zi1hY2E2NWU3NTIxMjAucG5nIiwid2lkdGgiOiI8PTEwNzkifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.Ap7EdyE61CA2kpVuy3Nfj5K3yDV_A4Tk6DK758vwG_g",
+      "background": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b7194b23-f36b-4ed0-a679-d4f262ec5aa0/dfnn9kn-1c493887-e967-498d-bb90-6310418f4299.png/v1/fill/w_909,h_879,q_70,strp/sample2_by_pferty_dfnn9kn-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA0NCIsInBhdGgiOiJcL2ZcL2I3MTk0YjIzLWYzNmItNGVkMC1hNjc5LWQ0ZjI2MmVjNWFhMFwvZGZubjlrbi0xYzQ5Mzg4Ny1lOTY3LTQ5OGQtYmI5MC02MzEwNDE4ZjQyOTkucG5nIiwid2lkdGgiOiI8PTEwNzkifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.KMOxkavn8ZURNB5n2UzH98ZzNJs8Do2mnQZNpzMFTzo",
+      "data": [
+        {
+          "type": "img",
+          "src": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b7194b23-f36b-4ed0-a679-d4f262ec5aa0/dfnn9la-b597fbe5-f25a-4e55-aab6-7d6d663dfc97.png/v1/fill/w_759,h_1053,q_70,strp/sample3_by_pferty_dfnn9la-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTQ5NyIsInBhdGgiOiJcL2ZcL2I3MTk0YjIzLWYzNmItNGVkMC1hNjc5LWQ0ZjI2MmVjNWFhMFwvZGZubjlsYS1iNTk3ZmJlNS1mMjVhLTRlNTUtYWFiNi03ZDZkNjYzZGZjOTcucG5nIiwid2lkdGgiOiI8PTEwNzkifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.lUo5WUMDVrsbX8SWPcS2gKZb0PoKPGzt4_Xux1MfIec"
+        }
+      ]
+    }
+  ]
+}
