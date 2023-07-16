@@ -5,28 +5,35 @@ import data from "@/assets/data.json";
 export interface PageDataInterface {
   title: string;
   subtext?: string;
-  name: string;
+  name?: string;
+  id?: string;
   type: string;
   thumbnail: string;
   background?: string;
-  data: {
+  data?: {
     type: string;
     src: string;
   }[];
+  children?: PageDataInterface[];
+}
+
+function setRouteNames(routes: PageDataInterface[]): PageDataInterface[] {
+  return routes.map((route) => ({
+    ...route,
+    name: route.title.toLowerCase().replaceAll(" ", ""),
+    ...(route.children ? { children: setRouteNames(route.children) } : {}),
+  }));
 }
 
 export const usePageDataStore = defineStore("pageData", () => {
   const currentPage = ref("home");
-  const pages: PageDataInterface[] = data.routes.map((route) => ({
-    ...route,
-    name: route.title.toLowerCase().replaceAll(" ", ""),
-  }));
+  const pages: PageDataInterface[] = setRouteNames(data.routes);
 
   const pageMap: { [key: string]: PageDataInterface } = pages.reduce(
     (ret, page) => {
       return {
         ...ret,
-        [page.name]: page,
+        ...(page.name ? { [page.name]: page } : {}),
       };
     },
     {}

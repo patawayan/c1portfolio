@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, onBeforeUnmount } from "vue";
 
 const props = defineProps<{ text: string; disabled?: boolean }>();
 
@@ -9,20 +9,30 @@ let translateWidth = ref(0);
 let translateSpeed = ref(0);
 let hover = ref(false);
 
-onMounted(() => {
-  // Set scroll animation speed based on if text overflows and on length of text
+/**
+ * Set scroll animation speed and width based on if text overflows and on length of text
+ */
+const setAnimSpeedAndWidth = () => {
   const childWidth = child?.value?.offsetWidth ?? 0;
   const parentWidth = parent?.value?.offsetWidth ?? 0;
 
-  if (parentWidth < childWidth) {
+  if (parentWidth + 10 <= childWidth) {
     translateWidth.value = childWidth - parentWidth + 1;
     // Speed is 5 seconds per entire roundtrip of parentWidth
     translateSpeed.value = ((childWidth - parentWidth) / parentWidth) * 5;
-    console.log(props.text, translateSpeed.value);
   } else {
     translateWidth.value = 0;
     translateSpeed.value = 0;
   }
+};
+
+onMounted(() => {
+  window.addEventListener("resize", setAnimSpeedAndWidth);
+  setAnimSpeedAndWidth();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", setAnimSpeedAndWidth);
 });
 
 const cssVariables = computed(() =>
