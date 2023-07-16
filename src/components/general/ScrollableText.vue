@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
-defineProps<{ text: string }>();
+const props = defineProps<{ text: string }>();
 
 const parent = ref(null);
 const child = ref(null);
@@ -16,7 +16,9 @@ onMounted(() => {
 
   if (parentWidth < childWidth) {
     translateWidth.value = childWidth - parentWidth + 1;
-    translateSpeed.value = Math.ceil(childWidth / parentWidth) * 3;
+    // Speed is 5 seconds per entire roundtrip of parentWidth
+    translateSpeed.value = ((childWidth - parentWidth) / parentWidth) * 5;
+    console.log(props.text, translateSpeed.value);
   } else {
     translateWidth.value = 0;
     translateSpeed.value = 0;
@@ -59,6 +61,6 @@ const cssVariables = computed(() =>
 }
 
 .scroll:hover {
-  animation: scroll var(--translateSpeed) ease-in-out infinite;
+  animation: scroll var(--translateSpeed) linear infinite;
 }
 </style>
