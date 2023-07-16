@@ -19,16 +19,42 @@ const primary = settings.meta.colors.primary ?? "#FF8C01";
 const dark = settings.meta.colors.dark ?? "#000000";
 const light = settings.meta.colors.light ?? "#EEEEEE";
 
+/**
+ * Returns linearGradient string for CSS
+ * @param {string} rgba
+ * @returns
+ */
+const createLinearGradent = (rgba, alpha) => {
+  return `linear-gradient(to bottom, ${hexToRGB(rgba, alpha)}, ${hexToRGB(
+    rgba,
+    alpha
+  )})`;
+};
+
+/**
+ * Background Images for side bar buttons
+ */
 const backgroundImage = settings.routes.reduce((agg, route) => {
+  const name = route.title.toLowerCase().replaceAll(" ", "");
+  const background = route.background ?? route.thumbnail;
   return {
     ...agg,
-    [`${route.title.toLowerCase().replaceAll(" ", "")}-image`]: `url('${
-      route.background ?? route.thumbnail
-    }')`,
+    [`${name}-image`]: `${createLinearGradent(
+      dark,
+      0.8
+    )}, url('${background}')`,
+    [`${name}-image-hover`]: `${createLinearGradent(
+      primary,
+      0.1
+    )},${createLinearGradent(dark, 0.8)}, url('${background}')`,
+    [`${name}-image-active`]: `${createLinearGradent(
+      primary,
+      0.3
+    )},${createLinearGradent(dark, 0.8)}, url('${route.thumbnail}')`,
   };
 }, {});
 
-console.log("ahaha", backgroundImage);
+console.log("aahahaha", backgroundImage);
 
 module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
@@ -55,6 +81,12 @@ module.exports = {
         50: hexToRGB(primary, 0.5),
         DEFAULT: primary,
       },
+    },
+    borderRadius: {
+      none: "0",
+      DEFAULT: "10px",
+      child: "50px 10px 10px 50px",
+      round: "50px",
     },
   },
   plugins: [],

@@ -8,6 +8,7 @@ interface PageDataInterface {
   name: string;
   type: string;
   thumbnail: string;
+  background?: string;
   data: {
     type: string;
     src: string;
