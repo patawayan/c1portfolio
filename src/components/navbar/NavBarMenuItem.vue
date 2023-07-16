@@ -51,8 +51,12 @@ let defaultStyle = computed(() => {
     <div
       :class="'flex-1 flex flex-col justify-center cursor-pointer overflow-hidden whitespace-nowrap'"
     >
-      <ScrollableText class="text-xl" :text="page.title" />
-      <ScrollableText class="text-sm dark:text-white-60" :text="page.subtext" />
+      <ScrollableText :disabled="active" class="text-xl" :text="page.title" />
+      <ScrollableText
+        :disabled="active"
+        class="text-sm dark:text-white-60"
+        :text="page.subtext"
+      />
     </div>
   </div>
 </template>

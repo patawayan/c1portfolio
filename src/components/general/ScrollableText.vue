@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
-const props = defineProps<{ text: string }>();
+const props = defineProps<{ text: string; disabled?: boolean }>();
 
 const parent = ref(null);
 const child = ref(null);
@@ -26,7 +26,7 @@ onMounted(() => {
 });
 
 const cssVariables = computed(() =>
-  hover.value
+  !props.disabled && hover.value
     ? {
         "--translateWidth": `-${translateWidth.value}px`,
         "--translateSpeed": `${translateSpeed.value}s`,
@@ -38,7 +38,8 @@ const cssVariables = computed(() =>
 <template>
   <div
     ref="parent"
-    class="overflow-hidden hover:overflow-visible text-ellipsis scroll"
+    class="overflow-hidden text-ellipsis scroll"
+    :class="disabled ? '' : 'hover:overflow-visible'"
     :style="cssVariables"
     @mouseenter="hover = true"
     @mouseleave="hover = false"
