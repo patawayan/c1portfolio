@@ -1,7 +1,7 @@
 const { defineConfig } = require("@vue/cli-service");
 const {
   meta: { title = "Portfolio" },
-} = require("./src/assets/settings.json");
+} = require("./src/assets/data.json");
 
 module.exports = defineConfig({
   transpileDependencies: true,

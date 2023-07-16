@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import settings from "./src/assets/settings.json";
+import data from "./src/assets/data.json";
 
 /**
  * Function to convert 6 digit color hex codes to rgba() string.
@@ -15,26 +15,25 @@ const hexToRGB = (hex, alpha) => {
   return `rgba(${r}, ${g}, ${b}${end}`;
 };
 
-const primary = settings.meta.colors.primary ?? "#FF8C01";
-const dark = settings.meta.colors.dark ?? "#000000";
-const light = settings.meta.colors.light ?? "#EEEEEE";
+const primary = data.meta.colors.primary ?? "#FF8C01";
+const dark = data.meta.colors.dark ?? "#000000";
+const light = data.meta.colors.light ?? "#EEEEEE";
 
 /**
  * Returns linearGradient string for CSS
  * @param {string} rgba
  * @returns
  */
-const createLinearGradent = (rgba, alpha) => {
-  return `linear-gradient(to bottom, ${hexToRGB(rgba, alpha)}, ${hexToRGB(
+const createLinearGradent = (rgba, alpha) =>
+  `linear-gradient(to bottom, ${hexToRGB(rgba, alpha)}, ${hexToRGB(
     rgba,
     alpha
   )})`;
-};
 
 /**
  * Background Images for side bar buttons
  */
-const backgroundImage = settings.routes.reduce((agg, route) => {
+const backgroundImage = data.routes.reduce((agg, route) => {
   const name = route.title.toLowerCase().replaceAll(" ", "");
   const background = route.background ?? route.thumbnail;
   return {
@@ -46,11 +45,11 @@ const backgroundImage = settings.routes.reduce((agg, route) => {
     [`${name}-image-hover`]: `${createLinearGradent(
       primary,
       0.1
-    )},${createLinearGradent(dark, 0.8)}, url('${background}')`,
+    )}, ${createLinearGradent(dark, 0.8)}, url('${background}')`,
     [`${name}-image-active`]: `${createLinearGradent(
       primary,
       0.3
-    )},${createLinearGradent(dark, 0.8)}, url('${route.thumbnail}')`,
+    )}, ${createLinearGradent(dark, 0.8)}, url('${route.thumbnail}')`,
   };
 }, {});
 
@@ -62,7 +61,25 @@ module.exports = {
   content: [],
   theme: {
     extend: {
-      backgroundImage,
+      backgroundImage: data.routes.reduce((agg, route) => {
+        const name = route.title.toLowerCase().replaceAll(" ", "");
+        const background = route.background ?? route.thumbnail;
+        return {
+          ...agg,
+          [`${name}-image`]: `${createLinearGradent(
+            dark,
+            0.8
+          )}, url('${background}')`,
+          [`${name}-image-hover`]: `${createLinearGradent(
+            primary,
+            0.1
+          )}, ${createLinearGradent(dark, 0.8)}, url('${background}')`,
+          [`${name}-image-active`]: `${createLinearGradent(
+            primary,
+            0.3
+          )}, ${createLinearGradent(dark, 0.8)}, url('${route.thumbnail}')`,
+        };
+      }, {}),
     },
     colors: {
       transparent: "transparent",

@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import settings from "@/assets/settings.json";
+import data from "@/assets/data.json";
 
-interface PageDataInterface {
+export interface PageDataInterface {
   title: string;
   subtext?: string;
   name: string;
@@ -17,7 +17,7 @@ interface PageDataInterface {
 
 export const usePageDataStore = defineStore("pageData", () => {
   const currentPage = ref("home");
-  const pages: PageDataInterface[] = settings.routes.map((route) => ({
+  const pages: PageDataInterface[] = data.routes.map((route) => ({
     ...route,
     name: route.title.toLowerCase().replaceAll(" ", ""),
   }));
