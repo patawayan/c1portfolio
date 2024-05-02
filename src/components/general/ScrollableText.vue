@@ -1,48 +1,101 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, onBeforeUnmount } from "vue";
 
-const props = defineProps<{ text: string; disabled?: boolean }>();
+const props = defineProps<{
+  /**
+   * The text to scroll
+   */
+  text: string;
+  /**
+   * True if the scrollability should be disabled
+   */
+  disabled?: boolean;
+  /**
+   * True if the text should scroll vertically
+   */
+  isVertical?: boolean;
+}>();
 
+/**
+ * Reference to the parent container where the child text will scroll in.
+ */
 const parent = ref(null);
+
+/**
+ * The container of text to scroll.
+ */
 const child = ref(null);
-let translateWidth = ref(0);
+
+/**
+ * Distance the scrollable text has to scroll for
+ */
+let translateDistance = ref(0);
+
+/**
+ * The speed at which the scrollable text has to scroll for
+ */
 let translateSpeed = ref(0);
+
+/**
+ * True if the parent component is being hovered over
+ */
 let hover = ref(false);
 
 /**
- * Set scroll animation speed and width based on if text overflows and on length of text
+ * Set scroll animation speed and distance based on if text overflows and on length of text
  */
-const setAnimSpeedAndWidth = () => {
-  const childWidth = child?.value?.offsetWidth ?? 0;
-  const parentWidth = parent?.value?.offsetWidth ?? 0;
+const setAnimSpeedAndDistance = () => {
+  const childDistance = props.isVertical
+    ? child?.value?.offsetHeight ?? 0
+    : child?.value?.offsetWidth ?? 0;
 
-  if (parentWidth + 10 <= childWidth) {
-    translateWidth.value = childWidth - parentWidth + 1;
+  const parentDistance = props.isVertical
+    ? parent?.value?.offsetHeight ?? 0
+    : parent?.value?.offsetWidth ?? 0;
+
+  if (parentDistance + 10 <= childDistance) {
+    translateDistance.value = childDistance - parentDistance + 1;
     // Speed is 5 seconds per entire roundtrip of parentWidth
-    translateSpeed.value = ((childWidth - parentWidth) / parentWidth) * 5;
+    translateSpeed.value =
+      ((childDistance - parentDistance) / parentDistance) * 5;
   } else {
-    translateWidth.value = 0;
+    translateDistance.value = 0;
     translateSpeed.value = 0;
   }
 };
 
 onMounted(() => {
-  window.addEventListener("resize", setAnimSpeedAndWidth);
-  setAnimSpeedAndWidth();
+  // Set to rerender animation speed and distance on window resize
+  window.addEventListener("resize", setAnimSpeedAndDistance);
+  // Set initial animation speed and distance
+  setAnimSpeedAndDistance();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", setAnimSpeedAndWidth);
+  // Remove resize listener
+  window.removeEventListener("resize", setAnimSpeedAndDistance);
 });
 
-const cssVariables = computed(() =>
-  !props.disabled && hover.value
+const cssVariables = computed(() => {
+  const translateDistanceString = `-${translateDistance.value}px`;
+  return !props.disabled && hover.value
     ? {
-        "--translateWidth": `-${translateWidth.value}px`,
         "--translateSpeed": `${translateSpeed.value}s`,
+        /**
+         * The start and end point of the animation
+         * Creates either a "translateX" or "translateY" keyframe
+         */
+        "--transformStartEnd": `translate${props.isVertical ? "Y" : "X"}(0)`,
+        /**
+         * The mid point of the animation
+         * Creates either a "translateX" or "translateY" keyframe
+         */
+        "--transformMid": `translate${
+          props.isVertical ? "Y" : "X"
+        }(${translateDistanceString})`,
       }
-    : {}
-);
+    : {};
+});
 </script>
 
 <template>
@@ -64,10 +117,10 @@ const cssVariables = computed(() =>
 @keyframes scroll {
   0%,
   100% {
-    transform: translateX(0);
+    transform: var(--transformStartEnd);
   }
   50% {
-    transform: translateX(var(--translateWidth));
+    transform: var(--transformMid);
   }
 }
 
