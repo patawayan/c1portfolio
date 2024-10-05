@@ -7,7 +7,7 @@ import {
   primaryColor,
   hexToRGB,
 } from "@/utils";
-import ScrollableText from "../general/ScrollableText.vue";
+import ScrollableHorizontalText from "../general/scrollableText/ScrollableHorizontalText.vue";
 import NavBarMenu from "./NavBarMenu.vue";
 
 interface MenuItemProps {
@@ -94,8 +94,12 @@ const childStyle = computed(() =>
         v-if="!minimized"
         class="flex-1 flex flex-col justify-center cursor-pointer overflow-hidden whitespace-nowrap pr-5"
       >
-        <ScrollableText :disabled="active" class="text-xl" :text="page.title" />
-        <ScrollableText
+        <ScrollableHorizontalText
+          :disabled="active"
+          class="text-xl"
+          :text="page.title"
+        />
+        <ScrollableHorizontalText
           v-if="page.subtext"
           :disabled="active"
           class="text-sm dark:text-white-60"
