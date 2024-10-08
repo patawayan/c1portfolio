@@ -6,9 +6,12 @@ import {
   darkColor,
   primaryColor,
   hexToRGB,
+  lightColor,
 } from "@/utils";
 import ScrollableHorizontalText from "../general/scrollableText/ScrollableHorizontalText.vue";
 import NavBarMenu from "./NavBarMenu.vue";
+import { useAppDataStore } from "@/stores";
+import { storeToRefs } from "pinia";
 
 interface MenuItemProps {
   page: PageDataInterface;
@@ -20,19 +23,25 @@ let props = defineProps<MenuItemProps>();
 let active = ref(false);
 let hover = ref(false);
 
+const appDataStore = useAppDataStore();
+const isDarkMode = storeToRefs(appDataStore).isDarkMode;
+
 /** Different background styles for menu item */
 let itemStyles = computed(() => {
   const { page } = props;
   const background = page.background ?? page.thumbnail;
   return {
-    default: `${createLinearGradent(darkColor, 0.8)}, url('${background}')`,
-    hover: `${createLinearGradent(primaryColor, 0.1)}, ${createLinearGradent(
-      darkColor,
+    default: `${createLinearGradent(
+      isDarkMode.value ? darkColor : lightColor,
       0.8
     )}, url('${background}')`,
+    hover: `${createLinearGradent(primaryColor, 0.1)}, ${createLinearGradent(
+      isDarkMode.value ? darkColor : lightColor,
+      isDarkMode.value ? 0.8 : 0.8
+    )}, url('${background}')`,
     active: `${createLinearGradent(primaryColor, 0.3)}, ${createLinearGradent(
-      darkColor,
-      0.8
+      isDarkMode.value ? darkColor : lightColor,
+      isDarkMode.value ? 0.8 : 0.4
     )}, url('${page.thumbnail}')`,
     hoverBorder: `5px solid ${hexToRGB(primaryColor, 0.2)}`,
     activeBorder: `5px solid ${hexToRGB(primaryColor, 0.5)}`,
@@ -97,12 +106,22 @@ const childStyle = computed(() =>
         <ScrollableHorizontalText
           :disabled="active"
           class="text-xl"
+          :class="
+            active
+              ? 'text-black dark:text-white'
+              : 'text-gray-10 dark:text-white-60'
+          "
           :text="page.title"
         />
         <ScrollableHorizontalText
           v-if="page.subtext"
           :disabled="active"
-          class="text-sm dark:text-white-60"
+          class="text-sm"
+          :class="
+            active
+              ? 'text-black dark:text-white'
+              : 'text-gray-10 dark:text-white-60'
+          "
           :text="page.subtext"
         />
       </div>

@@ -53,8 +53,11 @@ onMounted(() => {
   >
     <div
       ref="childRef"
-      class="scroll-child"
-      :class="hover ? '' : `line-clamp-${numberOfLines ? numberOfLines : 5}`"
+      class="scroll-child absolute"
+      :style="{
+        '--line-clamp-height': numberOfLines ?? 5,
+      }"
+      :class="hover ? '' : 'local-line-clamp'"
     >
       {{ text }}
     </div>
@@ -74,5 +77,13 @@ onMounted(() => {
 
 .scroll-child:hover {
   animation: scroll-child var(--translateSpeed) linear infinite;
+}
+
+.local-line-clamp {
+  display: -webkit-box;
+  line-clamp: var(--line-clamp-height);
+  -webkit-line-clamp: var(--line-clamp-height);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

@@ -1,5 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-import { darkColor, lightColor, primaryColor, hexToRGB } from "./src/utils";
+import {
+  darkColor,
+  lightColor,
+  primaryColor,
+  hexToRGB,
+  darkToLightMix,
+  lightToPrimaryMix,
+  primaryToDarkMix,
+} from "./src/utils";
 
 module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
@@ -18,10 +26,20 @@ module.exports = {
         60: hexToRGB(lightColor, 0.6),
         DEFAULT: lightColor,
       },
+      gray: darkToLightMix,
+      lightToPrimary: lightToPrimaryMix,
+      primaryToDark: primaryToDarkMix,
       primary: {
         20: hexToRGB(primaryColor, 0.2),
         50: hexToRGB(primaryColor, 0.5),
         DEFAULT: primaryColor,
+      },
+      blue: {
+        light: "#31A9FF",
+        dark: "#3D588E",
+      },
+      yellow: {
+        DEFAULT: "#FFD25E",
       },
     },
     borderRadius: {

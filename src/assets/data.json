@@ -2,11 +2,19 @@
   "meta": {
     "title": "C1",
     "subtitle": "This is a sample of a long subtitle to do the long subtitle thing. This is another sentence and another sentence will be added with more words. Break me like a promise. So casually cruel in the name of being honest. I remmeber it all all all. They say alls well that ends well",
+    "background": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b7194b23-f36b-4ed0-a679-d4f262ec5aa0/dfnn9k7-11e1504c-4500-4f7a-919f-aca65e752120.png/v1/fill/w_733,h_1090,q_70,strp/sample1_by_pferty_dfnn9k7-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTYwMyIsInBhdGgiOiJcL2ZcL2I3MTk0YjIzLWYzNmItNGVkMC1hNjc5LWQ0ZjI2MmVjNWFhMFwvZGZubjlrNy0xMWUxNTA0Yy00NTAwLTRmN2EtOTE5Zi1hY2E2NWU3NTIxMjAucG5nIiwid2lkdGgiOiI8PTEwNzkifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.Ap7EdyE61CA2kpVuy3Nfj5K3yDV_A4Tk6DK758vwG_g",
+
     "colors": {
       "primary": "#FF8C01",
       "dark": "#000000",
       "light": "#EEEEEE"
     }
+  },
+  "contact": {
+    "email": "email@email.com",
+    "phone": "1234567890",
+    "instagram": "https://instagram.com",
+    "deviantart": "https://deviantart.com"
   },
   "routes": [
     {
